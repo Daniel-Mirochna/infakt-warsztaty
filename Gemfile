@@ -95,3 +95,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "sidekiq", "~> 7.1"
+
+gem "sidekiq-cron", "~> 1.10"

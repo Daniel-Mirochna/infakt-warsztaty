@@ -3,9 +3,11 @@ class BookLoansController < ApplicationController
   before_action :prepare_book_loan, only: %i[create]
 
   def create
+    one_day_before_due = @book_loan.due_date - 1
     respond_to do |format|
       if @book_loan.save
         notice_calendar
+        LoanCreatedJob.perform_async(@book_loan.id)
         format.html { redirect_to book_url(book), notice: flash_notice }
         format.json { render :show, status: :created, location: @book_loan }
       else
