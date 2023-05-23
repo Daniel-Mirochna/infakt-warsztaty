@@ -33,6 +33,8 @@ gem 'redis', '~> 4.0'
 # A9n
 gem 'a9n', '~> 1.5'
 
+gem 'bunny'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
