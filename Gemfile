@@ -24,6 +24,8 @@ gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
+gem 'hotwire-rails'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
@@ -32,6 +34,9 @@ gem 'redis', '~> 4.0'
 
 # A9n
 gem 'a9n', '~> 1.5'
+
+# Pagination
+gem 'kaminari'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
