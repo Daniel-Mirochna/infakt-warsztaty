@@ -8,7 +8,8 @@ class BookLoansController < ApplicationController
       if @book_loan.save
         notice_calendar
         LoanCreatedJob.perform_async(@book_loan.id)
-        LoanBookPublisher.new(@book_loan.attributes).publish
+        Rails.logger.debug("############ #{@book_loan.attributes} ########")
+        ::Publishers::LoanBookPublisher.new(@book_loan.attributes).publish
         format.html { redirect_to book_url(book), notice: flash_notice }
         format.json { render :show, status: :created, location: @book_loan }
       else
