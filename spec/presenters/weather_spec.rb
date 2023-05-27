@@ -26,21 +26,58 @@ RSpec.describe WeatherPresenter do
   end
 
   # dodać mockowanie wyniku metody description w metodzie nice_weather?
-  context 'nice_weather' do
-    context 'returns true' do
-      it 'when Sunny' do
-        expect(presenter.nice_weather?).to be true
-      end
-
-      it 'when Partly Cloudy' do
-        expect(presenter.nice_weather?).to be true
-      end
+  context 'nice_weather?' do
+    it 'returns true when Sunny' do
+      allow(presenter).to receive(:description).and_return("Sunny")
+      expect(presenter.nice_weather?).to be true
     end
 
-    context 'returns false' do
-      it 'when not Sunny nor Partly Cloudy' do
-        expect(presenter.nice_weather?).to be false
-      end
+    it 'returns true when Partly cloudy' do
+      allow(presenter).to receive(:description).and_return("Partly cloudy")
+      expect(presenter.nice_weather?).to be true
+    end
+
+    it 'returns false when not Sunny nor Partly cloudy' do
+      allow(presenter).to receive(:description).and_return("Rainy")
+      expect(presenter.nice_weather?).to be false
+    end
+  end
+
+  context 'good_to_read_outside?' do
+    it 'returns true when weather is nice and temperature > 15' do
+      allow(presenter).to receive(:temperature).and_return(15.1)
+      allow(presenter).to receive(:nice_weather?).and_return(true)
+      expect(presenter.good_to_read_outside?).to be true
+    end
+
+    it 'returns false when temperature <= 15' do
+      allow(presenter).to receive(:temperature).and_return(15)
+      allow(presenter).to receive(:nice_weather?).and_return(true)
+      expect(presenter.good_to_read_outside?).to be false
+    end
+
+    it 'returns false when weather is not nice' do
+      allow(presenter).to receive(:temperature).and_return(15.1)
+      allow(presenter).to receive(:nice_weather?).and_return(false)
+      expect(presenter.good_to_read_outside?).to be false
+    end
+
+    it 'returns false when temperature <= 15 and weather is not nice' do
+      allow(presenter).to receive(:temperature).and_return(15)
+      allow(presenter).to receive(:nice_weather?).and_return(false)
+      expect(presenter.good_to_read_outside?).to be false
+    end
+  end
+
+  context 'encourage_text' do
+    it 'returns "Get some snacks and go read a book in a park!" when it is good_to_read_outside' do
+      allow(presenter).to receive(:good_to_read_outside?).and_return(true)
+      expect(presenter.encourage_text).to eq("Get some snacks and go read a book in a park!")
+    end
+
+    it 'returns "Its always a good weather to read a book!" when it is not good_to_read_outside' do
+      allow(presenter).to receive(:good_to_read_outside?).and_return(false)
+      expect(presenter.encourage_text).to eq("It's always a good weather to read a book!")
     end
   end
 end
