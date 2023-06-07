@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import SearchController from "./search_controller"
 application.register("search", SearchController)
+
+import WeatherController from "./weather_controller"
+application.register("weather", WeatherController)

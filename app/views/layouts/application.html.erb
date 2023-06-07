@@ -40,8 +40,10 @@
           </ul>
         </div>
       </div>
-      <div class="container">
-        <%= render partial: "weather/show" %>
+      <div class="container" data-controller="weather">
+        <%= turbo_frame_tag 'weather_show', src: weather_show_path(latitude: 41.3902, longitude: 2.1734) do %>
+          Loading weather info...
+        <% end %>
       </div>
     </nav>
       

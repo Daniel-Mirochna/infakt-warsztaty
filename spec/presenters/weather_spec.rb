@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WeatherPresenter do
-  let(:presenter) { WeatherPresenter.new(WeatherApiConnector.new.weather_data) }
+  let(:presenter) { WeatherPresenter.new(WeatherApiConnector.new.weather_data(41.39, 2.1540)) }
 
   it 'is not nil' do
     expect(presenter).not_to be_nil  
