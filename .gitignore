@@ -36,3 +36,5 @@
 
 # Ignore personal configuration
 /config/configuration.yml
+
+.idea/
