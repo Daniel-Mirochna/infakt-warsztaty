@@ -29,17 +29,17 @@ RSpec.describe WeatherPresenter do
   context 'nice_weather?' do
     it 'returns true when Sunny' do
       allow(presenter).to receive(:description).and_return("Sunny")
-      expect(presenter.nice_weather?).to be true
+      expect(presenter.send(:nice_weather?)).to be true
     end
 
     it 'returns true when Partly cloudy' do
       allow(presenter).to receive(:description).and_return("Partly cloudy")
-      expect(presenter.nice_weather?).to be true
+      expect(presenter.send(:nice_weather?)).to be true
     end
 
     it 'returns false when not Sunny nor Partly cloudy' do
       allow(presenter).to receive(:description).and_return("Rainy")
-      expect(presenter.nice_weather?).to be false
+      expect(presenter.send(:nice_weather?)).to be false
     end
   end
 
@@ -47,25 +47,25 @@ RSpec.describe WeatherPresenter do
     it 'returns true when weather is nice and temperature > 15' do
       allow(presenter).to receive(:temperature).and_return(15.1)
       allow(presenter).to receive(:nice_weather?).and_return(true)
-      expect(presenter.good_to_read_outside?).to be true
+      expect(presenter.send(:good_to_read_outside?)).to be true
     end
 
     it 'returns false when temperature <= 15' do
       allow(presenter).to receive(:temperature).and_return(15)
       allow(presenter).to receive(:nice_weather?).and_return(true)
-      expect(presenter.good_to_read_outside?).to be false
+      expect(presenter.send(:good_to_read_outside?)).to be false
     end
 
     it 'returns false when weather is not nice' do
       allow(presenter).to receive(:temperature).and_return(15.1)
       allow(presenter).to receive(:nice_weather?).and_return(false)
-      expect(presenter.good_to_read_outside?).to be false
+      expect(presenter.send(:good_to_read_outside?)).to be false
     end
 
     it 'returns false when temperature <= 15 and weather is not nice' do
       allow(presenter).to receive(:temperature).and_return(15)
       allow(presenter).to receive(:nice_weather?).and_return(false)
-      expect(presenter.good_to_read_outside?).to be false
+      expect(presenter.send(:good_to_read_outside?)).to be false
     end
   end
 
