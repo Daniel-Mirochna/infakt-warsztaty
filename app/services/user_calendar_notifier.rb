@@ -57,6 +57,6 @@ class UserCalendarNotifier
   end
   
   def two_week_from_now
-    @two_week_from_now ||= Time.zone.now + 14.days
+    @two_week_from_now ||= Time.zone.now + LOAN_DUE_DATE
   end
 end
