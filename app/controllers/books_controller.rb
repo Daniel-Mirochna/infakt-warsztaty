@@ -49,7 +49,7 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = Book.where("title LIKE ?", "%#{params[:search]}%")
+    @books = Book.where("title LIKE :search", search: "%#{search_params[:search]}%")
     respond_to do |format|
       format.json { render json: render_to_string(partial: 'books/index_item', collection: @books, as: :book, formats: [:html])}
     end
@@ -64,5 +64,9 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :isbn, :year, :page_count, :published_on, :language, :author_id, :category_id,
                                  :publisher_id)
+  end
+
+  def search_params
+    params.permit(:search)
   end
 end
