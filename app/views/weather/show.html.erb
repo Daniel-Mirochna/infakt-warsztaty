@@ -1,6 +1,5 @@
 <%= turbo_frame_tag 'weather_show' do %>
-  <% weather_presenter = WeatherPresenter.new(@data) %>
-  Today's weather in <%= @data['location']['name'] %> is: <%= weather_presenter.temperature %> &deg;C, 
-  <%= weather_presenter.description %> <%= image_tag weather_presenter.icon, class: "d-inline" %>
-  <%= weather_presenter.encourage_text %>
+  Today's weather in <%= @data['location']['name'] %> is: <%= @weather_presenter.temperature %> &deg;C, 
+  <%= @weather_presenter.description %> <%= image_tag @weather_presenter.icon, class: "d-inline" %>
+  <%= @weather_presenter.encourage_text %>
 <% end %>

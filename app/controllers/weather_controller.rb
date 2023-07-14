@@ -5,6 +5,7 @@ class WeatherController < ApplicationController
     latitude = weather_show_params[:latitude].to_f
     longitude = weather_show_params[:longitude].to_f
     @data = WeatherApiConnector.new.weather_data(latitude, longitude)
+    @weather_presenter = WeatherPresenter.new(@data)
   end
 
   private
